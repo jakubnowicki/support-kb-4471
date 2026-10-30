@@ -4,7 +4,7 @@ title: '#4471 split · two problems, not one'
 owner: support desk
 status: closed
 reviewed: 2026-10-30
-signature: Jakub Nowicki
+signature: 'v1.eyJzdWIiOiIzMDQ0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNTUxNzQsImV4cCI6MTc5MzQ0MTU3NH0.icqyn4h7_vRYM4t85wnQ8VCTHN3G3EsrnoKFxofXfGo'
 ---
 
 <script>
