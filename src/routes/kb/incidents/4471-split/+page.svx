@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 split · two problems, not one'
 owner: support desk
-status: open
+status: closed
 reviewed: 2026-10-30
 signature: Jakub Nowicki
 ---
@@ -20,8 +20,9 @@ signature: Jakub Nowicki
 and marked known as one parser bug. Read by tenant and channel, its reports are two
 problems. Each now has its own ticket.
 
-<Callout kind="warn">
-The parser fix queued for #4471 does not close the hint problem.
+<Callout>
+Closed 5 October. parser: fixed (fix(dates): parse dd/mm for eu locales). hint: won't fix,
+the booking-v3 form is retired.
 </Callout>
 
 ## What #4471 holds
@@ -31,11 +32,12 @@ The parser fix queued for #4471 does not close the hint problem.
 ## The two problems
 
 - **`parser`**: the shared parser reads every date month first. A day-first tenant's dates
-  come out with day and month swapped, on every channel and both booking forms.
+  come out with day and month swapped, on every channel and both booking forms. **Fixed**: the
+  parser now reads dd/mm for eu locales.
 - **`hint`**: `booking-v3` prints `MM/DD/YYYY` under its date field. People at day-first
   tenants type what the hint says, and the form reads it day first. Only reports sent through the
-  form, only at tenants on `booking-v3`. The parser fix leaves this as it is; the hint has to
-  change.
+  form, only at tenants on `booking-v3`. The parser fix does not touch it. **Won't fix**: the
+  `booking-v3` form is retired, so the hint is gone with it.
 
 ## For the desk
 
