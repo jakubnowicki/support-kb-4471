@@ -1,0 +1,51 @@
+---
+layout: runbook
+title: '#4471 split · three problems, not one'
+owner: support desk
+status: open
+reviewed: 2026-10-30
+signature: Jakub Nowicki
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+
+  const repo = 'https://github.com/jakubnowicki/support-kb-4471/issues/';
+  const tickets = { parser: repo + '1', hint: repo + '2', 'one-day': repo + '3' };
+</script>
+
+[#4471](/kb/incidents/4471) was merged on subject lines ([decision 0001](/kb/decisions/0001-dedupe-by-subject))
+and marked known as one parser bug. Read by tenant, channel and body, its reports are three
+problems. Each now has its own ticket.
+
+<Callout kind="warn">
+The parser fix queued for #4471 does not close the other two problems.
+</Callout>
+
+## What #4471 holds
+
+<ProblemTable ticket={4471} {tickets} />
+
+## The three problems
+
+- **`parser`**: the shared parser reads every date month first. A day-first tenant's dates
+  come out with day and month swapped, on every channel and both booking forms.
+- **`hint`**: `booking-v3` prints `MM/DD/YYYY` under its date field. People at day-first
+  tenants type what the hint says, and the form reads it day first. Only reports sent through the
+  form, only at tenants on `booking-v3`. The parser fix leaves this as it is; the hint has to
+  change.
+- **`one-day`**: the date moves by one day, not by a month swap. Reporters describe Monday for
+  Tuesday, a client in Toronto getting a different day than one in Lisbon, an invite that arrives
+  before the booking. That points at time zones, not at date order. The desk had footnoted these
+  under `parser`.
+
+## For the desk
+
+- Intake's `intakeTag` is a guess from the reporter's browser. File by tenant and channel
+  (`#lib/kb/causes.ts`), and read the body when the date moved by one day.
+- Same subject does not mean same problem: all three share subjects like "Wrong day on the
+  invite".
+
+<RenderStamp {signature} />
